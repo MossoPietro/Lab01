@@ -42,22 +42,50 @@ public class FXMLController {
     void doInsert(ActionEvent event) {
     	String parola;
     	parola = txtParola.getText();
+        double inizio;
+        double fine;
+        inizio = System.nanoTime();
     	elenco.addParola(parola);
+    	fine = System.nanoTime();
     	txtParola.clear();
     	txtResult.clear();
-    	String risultato = elenco.toString();
+    	txtPerformance.clear();
+    	String risultato = "";
+		for (String s : elenco.getElenco())
+			risultato += s + "\n";
     	txtResult.setText(risultato);
+    	txtPerformance.setText("Tempo impiegato: " + (fine-inizio)/10e9 + " secondi");
     }
 
     @FXML
     void doReset(ActionEvent event) {
+    	txtPerformance.clear();
+    	double inizio;
+        double fine;
+        inizio = System.nanoTime();
     	elenco.reset();
+    	fine = System.nanoTime();
     	txtResult.clear();
+    	txtPerformance.setText("Tempo impiegato: " + (fine-inizio)/10e9 + " secondi");
     }
     
     @FXML
     void doCancella(ActionEvent event) {
-
+    	String parola;
+    	parola = txtResult.getSelectedText();
+    	double inizio;
+        double fine;
+        inizio = System.nanoTime();
+    	elenco.removeParola(parola);
+    	fine = System.nanoTime();
+    	txtParola.clear();
+    	txtResult.clear();
+    	txtPerformance.clear();
+    	String risultato = "";
+		for (String s : elenco.getElenco())
+			risultato += s + "\n";
+    	txtResult.setText(risultato);
+    	txtPerformance.setText("Tempo impiegato: " + (fine-inizio)/10e9 + " secondi");
     }
 
     @FXML

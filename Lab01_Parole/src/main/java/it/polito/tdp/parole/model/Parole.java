@@ -24,13 +24,10 @@ public class Parole {
 	public void reset() {
 		this.elenco.clear();
 	}
-
-	@Override
-	public String toString() {
-		String risultato = "";
-		for (String s:this.elenco)
-			risultato +=s + "\n";
-		return risultato;
+	
+	public void removeParola(String p) {
+		this.elenco.remove(p);
+		return;
 	}
 	
 }
